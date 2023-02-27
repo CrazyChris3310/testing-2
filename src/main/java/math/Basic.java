@@ -1,3 +1,5 @@
+package math;
+
 public class Basic {
 
     public static final double PRECISION = 0.00001;
