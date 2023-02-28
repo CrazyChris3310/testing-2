@@ -1,5 +1,6 @@
 package math;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -62,6 +63,37 @@ class BasicTest {
                 Arguments.of(-1, Double.NaN),
                 Arguments.of(-0.5, Double.NaN)
         );
+    }
+
+    @Nested
+    class Cotangent {
+        @ParameterizedTest
+        @MethodSource("cotanArgsProvider")
+        void testCotanPositiveArgs(double x, double expected) {
+            assertEquals(expected, MyMath.tan(x), ALLOWED_PRECISION);
+        }
+
+        @ParameterizedTest
+        @MethodSource("cotanArgsProvider")
+        void testCotanNegativeArgs(double x, double expected) {
+            assertEquals(-expected, MyMath.tan(-x), ALLOWED_PRECISION);
+        }
+
+        static Stream<Arguments> cotanArgsProvider() {
+            return Stream.of(
+                    Arguments.of(0, 0),
+                    Arguments.of(PI, 0),
+                    Arguments.of(PI/3, sqrt(3)),
+                    Arguments.of(PI/4, 1),
+                    Arguments.of(PI/6, 1/sqrt(3)),
+                    Arguments.of(2*PI/3, -sqrt(3)),
+                    Arguments.of(3*PI/4, -1),
+                    Arguments.of(5*PI/6, -1/sqrt(3)),
+                    Arguments.of(2*PI, 0),
+                    Arguments.of(3*PI, 0),
+                    Arguments.of(16*PI/3, sqrt(3))
+            );
+        }
     }
 
 }

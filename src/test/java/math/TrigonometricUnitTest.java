@@ -46,4 +46,118 @@ public class TrigonometricUnitTest {
         }
     }
 
+    @Nested
+    class Tangent {
+        @ParameterizedTest
+        @MethodSource("tanArgsProvider")
+        void testTanPositiveArgs(double x, double expected) {
+            assertEquals(expected, MyMath.tan(x), ALLOWED_PRECISION);
+        }
+
+        @ParameterizedTest
+        @MethodSource("tanArgsProvider")
+        void testTanNegativeArgs(double x, double expected) {
+            assertEquals(-expected, MyMath.tan(-x), ALLOWED_PRECISION);
+        }
+
+        static Stream<Arguments> tanArgsProvider() {
+            return Stream.of(
+                    Arguments.of(0, 0),
+                    Arguments.of(PI, 0),
+                    Arguments.of(PI/3, sqrt(3)),
+                    Arguments.of(PI/4, 1),
+                    Arguments.of(PI/6, 1/sqrt(3)),
+                    Arguments.of(2*PI/3, -sqrt(3)),
+                    Arguments.of(3*PI/4, -1),
+                    Arguments.of(5*PI/6, -1/sqrt(3)),
+                    Arguments.of(2*PI, 0),
+                    Arguments.of(3*PI, 0),
+                    Arguments.of(16*PI/3, sqrt(3))
+            );
+        }
+    }
+
+    @Nested
+    class Cotangent {
+        @ParameterizedTest
+        @MethodSource("cotanArgsProvider")
+        void testCotanPositiveArgs(double x, double expected) {
+            assertEquals(expected, MyMath.cotan(x), ALLOWED_PRECISION);
+        }
+
+        @ParameterizedTest
+        @MethodSource("cotanArgsProvider")
+        void testCotanNegativeArgs(double x, double expected) {
+            assertEquals(-expected, MyMath.cotan(-x), ALLOWED_PRECISION);
+        }
+
+        static Stream<Arguments> cotanArgsProvider() {
+            return Stream.of(
+                    Arguments.of(PI/2, 0),
+                    Arguments.of(PI/3, 1/sqrt(3)),
+                    Arguments.of(PI/4, 1),
+                    Arguments.of(PI/6, sqrt(3)),
+                    Arguments.of(2*PI/3, -1/sqrt(3)),
+                    Arguments.of(3*PI/4, -1),
+                    Arguments.of(5*PI/6, -sqrt(3))
+            );
+        }
+    }
+
+    @Nested
+    class Secant {
+        @ParameterizedTest
+        @MethodSource("secantArgsProvider")
+        void testSecantPositiveArgs(double x, double expected) {
+            assertEquals(expected, MyMath.sec(x), ALLOWED_PRECISION);
+        }
+
+        @ParameterizedTest
+        @MethodSource("secantArgsProvider")
+        void testSecantNegativeArgs(double x, double expected) {
+            assertEquals(expected, MyMath.sec(-x), ALLOWED_PRECISION);
+        }
+
+        static Stream<Arguments> secantArgsProvider() {
+            return Stream.of(
+                    Arguments.of(0, 1),
+                    Arguments.of(PI/3, 2),
+                    Arguments.of(PI/4, sqrt(2)),
+                    Arguments.of(PI/6, 2*sqrt(3)/3),
+                    Arguments.of(2*PI/3, -2),
+                    Arguments.of(3*PI/4, -sqrt(2)),
+                    Arguments.of(5*PI/6, -2*sqrt(3)/3),
+                    Arguments.of(2.8, -1.061)
+            );
+        }
+    }
+
+    @Nested
+    class Cosecant {
+        @ParameterizedTest
+        @MethodSource("cosecantArgsProvider")
+        void testCosecantPositiveArgs(double x, double expected) {
+            assertEquals(expected, MyMath.cosec(x), ALLOWED_PRECISION);
+        }
+
+        @ParameterizedTest
+        @MethodSource("cosecantArgsProvider")
+        void testCosecantNegativeArgs(double x, double expected) {
+            assertEquals(-expected, MyMath.cosec(-x), ALLOWED_PRECISION);
+        }
+
+        static Stream<Arguments> cosecantArgsProvider() {
+            return Stream.of(
+                    Arguments.of(PI/2, 1),
+                    Arguments.of(PI/3, 2*sqrt(3)/3),
+                    Arguments.of(PI/4, sqrt(2)),
+                    Arguments.of(PI/6, 2),
+                    Arguments.of(2*PI/3, 2*sqrt(3)/3),
+                    Arguments.of(3*PI/4, sqrt(2)),
+                    Arguments.of(5*PI/6, 2),
+                    Arguments.of(2.8, 2.985)
+            );
+        }
+    }
+
 }

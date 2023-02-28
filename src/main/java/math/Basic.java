@@ -22,6 +22,9 @@ public class Basic {
     }
 
     public static double sin(double value) {
+        if (isSpecial(value)) {
+            return Double.NaN;
+        }
         return findSum(value, Basic::sinTaylorMember);
     }
 
@@ -34,7 +37,7 @@ public class Basic {
     }
 
     public static double ln(double value) {
-        if (value <= 0) {
+        if (value <= 0 || isSpecial(value)) {
             return Double.NaN;
         }
         double x = (value - 1) / (value + 1);
@@ -54,6 +57,10 @@ public class Basic {
         }
 
         return result;
+    }
+
+    public static boolean isSpecial(double x) {
+        return Double.isNaN(x) || Double.isInfinite(x);
     }
 
     interface FunctionMemberFinder {
