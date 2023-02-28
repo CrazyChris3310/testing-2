@@ -1,17 +1,17 @@
 package math;
 
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class Basic {
 
-    public static final double PRECISION = 0.00001;
-
-    interface FunctionMemberFinder {
-        double calculate(double x, int n);
-    }
+    public static final double PRECISION = 0.0000001;
 
     private static double sinTaylorMember(double x, int n) {
         int sign = n % 2 == 0 ? 1 : -1;
         double res = sign * Math.pow(x, 2 * n + 1);
-        return divideByFactorial(res, 2*n + 1);
+        return divideByFactorial(res, 2 * n + 1);
     }
 
     private static double divideByFactorial(double res, int n) {
@@ -26,12 +26,19 @@ public class Basic {
     }
 
     private static double lnTaylorMember(double x, int n) {
-        int sign = n % 2 == 0 ? -1 : 1;
-        return sign * Math.pow(x - 1, n) / n;
+        if (n % 2 == 0) {
+            return 0;
+        } else {
+            return 2 * Math.pow(x, n) / n;
+        }
     }
 
     public static double ln(double value) {
-        return findSum(value, Basic::lnTaylorMember);
+        if (value <= 0) {
+            return Double.NaN;
+        }
+        double x = (value - 1) / (value + 1);
+        return findSum(x, Basic::lnTaylorMember);
     }
 
     private static double findSum(double value, FunctionMemberFinder finder) {
@@ -45,6 +52,11 @@ public class Basic {
             result += current;
             n += 1;
         }
+
         return result;
+    }
+
+    interface FunctionMemberFinder {
+        double calculate(double x, int n);
     }
 }
