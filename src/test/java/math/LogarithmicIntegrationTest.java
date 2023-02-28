@@ -9,12 +9,14 @@ import java.util.stream.Stream;
 import static math.BasicTest.ALLOWED_PRECISION;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LogarithmicUnitTest {
+public class LogarithmicIntegrationTest {
+
+    MyMath math = new MyMath();
 
     @ParameterizedTest
     @MethodSource("logarithmProvider")
     void testLogarithm(int base, double value, double expected) {
-        assertEquals(expected, MyMath.log(base, value), ALLOWED_PRECISION);
+        assertEquals(expected, math.log(base, value), ALLOWED_PRECISION);
     }
 
     static Stream<Arguments> logarithmProvider() {

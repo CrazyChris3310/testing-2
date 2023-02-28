@@ -11,20 +11,22 @@ import static java.lang.Math.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static math.BasicTest.ALLOWED_PRECISION;
 
-public class TrigonometricUnitTest {
+public class TrigonometricIntegrationTest {
+
+    MyMath math = new MyMath();
 
     @Nested
     class Cosine {
         @ParameterizedTest
         @MethodSource("cosArgsProvider")
         void testCosPositiveArgs(double x, double expected) {
-            assertEquals(expected, MyMath.cos(x), ALLOWED_PRECISION);
+            assertEquals(expected, math.cos(x), ALLOWED_PRECISION);
         }
 
         @ParameterizedTest
         @MethodSource("cosArgsProvider")
         void testCosNegativeArgs(double x, double expected) {
-            assertEquals(expected, MyMath.cos(-x), ALLOWED_PRECISION);
+            assertEquals(expected, math.cos(-x), ALLOWED_PRECISION);
         }
 
         static Stream<Arguments> cosArgsProvider() {
@@ -51,13 +53,13 @@ public class TrigonometricUnitTest {
         @ParameterizedTest
         @MethodSource("tanArgsProvider")
         void testTanPositiveArgs(double x, double expected) {
-            assertEquals(expected, MyMath.tan(x), ALLOWED_PRECISION);
+            assertEquals(expected, math.tan(x), ALLOWED_PRECISION);
         }
 
         @ParameterizedTest
         @MethodSource("tanArgsProvider")
         void testTanNegativeArgs(double x, double expected) {
-            assertEquals(-expected, MyMath.tan(-x), ALLOWED_PRECISION);
+            assertEquals(-expected, math.tan(-x), ALLOWED_PRECISION);
         }
 
         static Stream<Arguments> tanArgsProvider() {
@@ -82,13 +84,13 @@ public class TrigonometricUnitTest {
         @ParameterizedTest
         @MethodSource("cotanArgsProvider")
         void testCotanPositiveArgs(double x, double expected) {
-            assertEquals(expected, MyMath.cotan(x), ALLOWED_PRECISION);
+            assertEquals(expected, math.cotan(x), ALLOWED_PRECISION);
         }
 
         @ParameterizedTest
         @MethodSource("cotanArgsProvider")
         void testCotanNegativeArgs(double x, double expected) {
-            assertEquals(-expected, MyMath.cotan(-x), ALLOWED_PRECISION);
+            assertEquals(-expected, math.cotan(-x), ALLOWED_PRECISION);
         }
 
         static Stream<Arguments> cotanArgsProvider() {
@@ -109,13 +111,13 @@ public class TrigonometricUnitTest {
         @ParameterizedTest
         @MethodSource("secantArgsProvider")
         void testSecantPositiveArgs(double x, double expected) {
-            assertEquals(expected, MyMath.sec(x), ALLOWED_PRECISION);
+            assertEquals(expected, math.sec(x), ALLOWED_PRECISION);
         }
 
         @ParameterizedTest
         @MethodSource("secantArgsProvider")
         void testSecantNegativeArgs(double x, double expected) {
-            assertEquals(expected, MyMath.sec(-x), ALLOWED_PRECISION);
+            assertEquals(expected, math.sec(-x), ALLOWED_PRECISION);
         }
 
         static Stream<Arguments> secantArgsProvider() {
@@ -137,13 +139,13 @@ public class TrigonometricUnitTest {
         @ParameterizedTest
         @MethodSource("cosecantArgsProvider")
         void testCosecantPositiveArgs(double x, double expected) {
-            assertEquals(expected, MyMath.cosec(x), ALLOWED_PRECISION);
+            assertEquals(expected, math.cosec(x), ALLOWED_PRECISION);
         }
 
         @ParameterizedTest
         @MethodSource("cosecantArgsProvider")
         void testCosecantNegativeArgs(double x, double expected) {
-            assertEquals(-expected, MyMath.cosec(-x), ALLOWED_PRECISION);
+            assertEquals(-expected, math.cosec(-x), ALLOWED_PRECISION);
         }
 
         static Stream<Arguments> cosecantArgsProvider() {
