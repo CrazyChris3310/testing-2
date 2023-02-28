@@ -7,7 +7,7 @@ public class MyMath {
     }
 
     public static double cos(double x) {
-        return 1 - sin(x) * sin(x);
+        return 1 - 2 * sin(x / 2)* sin(x / 2);
     }
 
     public static double tan(double x) {
